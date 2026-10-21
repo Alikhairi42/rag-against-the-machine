@@ -1,6 +1,9 @@
 from typing import List ,Dict 
 from pathlib import Path
 from chunker import LangChainChunker
+from rank_bm25 import BM25Okapi
+import pickle
+
 class CodebaseIndexer:
     def __init__(self, max_chunk_size: int = 2000):
         self.chunker = LangChainChunker(max_chunk_size=max_chunk_size)
@@ -35,6 +38,39 @@ class CodebaseIndexer:
                 except Exception as e:
                     pass
 
+    def token_and_build_bm25(self):
+        print("start tokenized ...")
+
+        tokenized_docs = []
+
+        for chunk in self.chunks:
+            token = chunk['text'].lower().split()
+            tokenized_docs.append(token)
+        
+        print("index BM 25 ....")
+
+        self.bm25 = BM25Okapi(tokenized_docs)
+
+    def save_index(self, save_dir: str = "data/processed"):
+        print("save index ....")
+        Path(save_dir).mkdir(parents=True, exist_ok=True)
+
+        chunks_path = Path(save_dir)
+
+        with open(f"{chunks_path}/chunks.pkl", "wb") as f:
+            pickle.dump(self.chunks, f)
+
+
+        bm25_path = Path(save_dir)
+        with open(f"{bm25_path}/bm25_index.pkl", "wb") as f:
+            pickle.dump(self.bm25, f)
+        
+
+
+
+
+
+
 if __name__ == "__main__":
     
     index = CodebaseIndexer(max_chunk_size=2000)
@@ -42,6 +78,8 @@ if __name__ == "__main__":
     raw_path = "data/raw/vllm-0.10.1"
 
     index.ingest_directory(raw_path)
+    index.token_and_build_bm25()
+    index.save_index()
 
 
 
