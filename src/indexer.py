@@ -52,11 +52,12 @@ class CodebaseIndexer:
         #     print(i)
         #     exit(1)
         self.bm25 = BM25Okapi(tokenized_docs)
-        scores = self.bm25.get_scores(tokenized_docs)
-        
-        # 4. Ntb3o ghir 10 dyal n9ati lowlin (bash may3merch terminal)
-        print(f"\n--- N9aț (Scores) dyl sou2al: '{test_query}' ---")
-        print(scores[:10]) 
+        # test
+        # test_query = "how to configure openai server"
+        # tokenized_query = test_query.lower().split()
+        # scores = self.bm25.get_scores(tokenized_query)
+        # print(f"\n--- N9aț (Scores) dyl sou2al: '{test_query}' ---")
+        # print(scores[:10]) 
     def save_index(self, save_dir: str = "data/processed"):
         print("save index ....")
         Path(save_dir).mkdir(parents=True, exist_ok=True)
