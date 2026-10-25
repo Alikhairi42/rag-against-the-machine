@@ -48,9 +48,15 @@ class CodebaseIndexer:
             tokenized_docs.append(token)
         
         print("index BM 25 ....")
-
+        # for i in  tokenized_docs:
+        #     print(i)
+        #     exit(1)
         self.bm25 = BM25Okapi(tokenized_docs)
-
+        scores = self.bm25.get_scores(tokenized_docs)
+        
+        # 4. Ntb3o ghir 10 dyal n9ati lowlin (bash may3merch terminal)
+        print(f"\n--- N9aț (Scores) dyl sou2al: '{test_query}' ---")
+        print(scores[:10]) 
     def save_index(self, save_dir: str = "data/processed"):
         print("save index ....")
         Path(save_dir).mkdir(parents=True, exist_ok=True)
