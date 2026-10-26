@@ -4,7 +4,7 @@ from typing import List, Dict
 
 class AnswerGenerator:
     def __init__(self, model_name: str = "Qwen/Qwen2.5-0.5B"):
-        print(f"⏳ Kan-loadiw l'Model '{model_name}'")
+        print(f"Kan-loadiw l'Model '{model_name}'")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
 
         self.model = AutoModelForCausalLM.from_pretrained(
@@ -31,7 +31,7 @@ class AnswerGenerator:
         outputs = self.model.generate(
             **inputs,
             max_new_tokens=200,
-            temperature=0.1,
+            # temperature=0.1,
             do_sample=False
         )
 
@@ -48,6 +48,6 @@ if __name__ == "__main__":
         {"text": "To configure the OpenAI compatible server in vLLM, you need to use the command: python -m vllm.entrypoints.openai.api_server --model facebook/opt-125m."}
     ]
     
-    print("\n⏳ L'Model kayfker...")  
+    print("\n L'Model kayfker...")  
     answer = generator.generate(fake_question, fake_chunks)
-    print(f"\n🤖 Qwen Jawb:\n{answer}")
+    print(f"\nwen Jawb:\n{answer}")
