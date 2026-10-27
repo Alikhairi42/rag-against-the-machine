@@ -1,0 +1,167 @@
+{
+    "search_results": [
+        {
+            "question_id": "q1",
+            "question": "How to configure OpenAI compatible server?",
+            "retrieved_sources": [
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/deployment/frameworks/dstack.md",
+                    "first_character_index": 1940,
+                    "last_character_index": 3169
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_chat_completion_client_with_tools_required.py",
+                    "first_character_index": 0,
+                    "last_character_index": 565
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/cli/serve.py",
+                    "first_character_index": 1277,
+                    "last_character_index": 2707
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_transcription_client.py",
+                    "first_character_index": 0,
+                    "last_character_index": 710
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/usage/faq.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1564
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/prompt_embed_inference_with_openai_client.py",
+                    "first_character_index": 0,
+                    "last_character_index": 929
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_chat_completion_tool_calls_with_reasoning.py",
+                    "first_character_index": 0,
+                    "last_character_index": 620
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/serving/openai_compatible_server.md",
+                    "first_character_index": 7872,
+                    "last_character_index": 9832
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_chat_completion_with_reasoning.py",
+                    "first_character_index": 0,
+                    "last_character_index": 1925
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/getting_started/quickstart.md",
+                    "first_character_index": 7111,
+                    "last_character_index": 8707
+                }
+            ]
+        },
+        {
+            "question_id": "q2",
+            "question": "What is the command to serve a model in vLLM?",
+            "retrieved_sources": [
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/deployment/frameworks/dstack.md",
+                    "first_character_index": 1940,
+                    "last_character_index": 3169
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_chat_completion_client_with_tools_required.py",
+                    "first_character_index": 0,
+                    "last_character_index": 565
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/vllm/entrypoints/cli/serve.py",
+                    "first_character_index": 1277,
+                    "last_character_index": 2707
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_transcription_client.py",
+                    "first_character_index": 0,
+                    "last_character_index": 710
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/usage/faq.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1564
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/prompt_embed_inference_with_openai_client.py",
+                    "first_character_index": 0,
+                    "last_character_index": 929
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_chat_completion_tool_calls_with_reasoning.py",
+                    "first_character_index": 0,
+                    "last_character_index": 620
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/serving/openai_compatible_server.md",
+                    "first_character_index": 7872,
+                    "last_character_index": 9832
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/examples/online_serving/openai_chat_completion_with_reasoning.py",
+                    "first_character_index": 0,
+                    "last_character_index": 1925
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/getting_started/quickstart.md",
+                    "first_character_index": 7111,
+                    "last_character_index": 8707
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/configuration/serve_args.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1014
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/usage/faq.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1564
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/serving/expert_parallel_deployment.md",
+                    "first_character_index": 1979,
+                    "last_character_index": 3310
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/design/huggingface_integration.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1818
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/serving/data_parallel_deployment.md",
+                    "first_character_index": 3458,
+                    "last_character_index": 5324
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/tools/profiler/nsys_profile_tools/README.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1977
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/models/extensions/runai_model_streamer.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1978
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/models/extensions/runai_model_streamer.md",
+                    "first_character_index": 1980,
+                    "last_character_index": 3820
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/deployment/integrations/kuberay.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1445
+                },
+                {
+                    "file_path": "data/raw/vllm-0.10.1/docs/features/prompt_embeds.md",
+                    "first_character_index": 0,
+                    "last_character_index": 1958
+                }
+            ]
+        }
+    ],
+    "k": 10
+}

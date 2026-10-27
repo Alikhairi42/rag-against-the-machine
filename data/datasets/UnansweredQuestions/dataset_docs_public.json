@@ -1,0 +1,12 @@
+{
+    "rag_questions": [
+        {
+            "question_id": "q1",
+            "question_rg": "How to configure OpenAI compatible server?"
+        },
+        {
+            "question_id": "q2",
+            "question_rg": "What is the command to serve a model in vLLM?"
+        }
+    ]
+}

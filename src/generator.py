@@ -1,7 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from typing import List, Dict
 
-
 class AnswerGenerator:
     def __init__(self, model_name: str = "Qwen/Qwen2.5-0.5B"):
         print(f"Kan-loadiw l'Model '{model_name}'")
@@ -31,21 +30,23 @@ class AnswerGenerator:
         outputs = self.model.generate(
             **inputs,
             max_new_tokens=200,
-            # temperature=0.1,
-            do_sample=False
+            temperature=0.1,
+            do_sample=True
         )
 
         input_length = inputs['input_ids'].shape[1]
         response = self.tokenizer.decode(outputs[0][input_length:], skip_special_tokens=True)
         
         return response.strip()
+    
 # ==========================================
 if __name__ == "__main__":
     generator = AnswerGenerator()
     
     fake_question = "How to configure OpenAI compatible server?"
     fake_chunks = [
-        {"text": "To configure the OpenAI compatible server in vLLM, you need to use the command: python -m vllm.entrypoints.openai.api_server --model facebook/opt-125m."}
+        {"text": "To configure the OpenAI compatible server in vLLM, you need to use the command: python -m vllm.entrypoints.openai.api_server --model facebook/opt-125m."},
+        {"text": "OpenAI you need to use the command"}
     ]
     
     print("\n L'Model kayfker...")  
