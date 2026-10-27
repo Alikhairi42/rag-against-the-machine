@@ -17,6 +17,7 @@ class RAGCLI:
         indexer.token_and_build_bm25()
         indexer.save_index()
         print("Ingestion complete! Indices saved under data/processed/")
+
     def search(self, query: str, k: int = 5):
         retriever = BM25Retriever()
         results = retriever.search(query, k=k)
