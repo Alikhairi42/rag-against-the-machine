@@ -3,12 +3,17 @@ from pathlib import Path
 from chunker import LangChainChunker
 from rank_bm25 import BM25Okapi
 import pickle
+from sentence_transformers import SentenceTransformer
+import numpy as np
+from incremental import IncrementalTracker
 
 class CodebaseIndexer:
     def __init__(self, max_chunk_size: int = 2000):
         self.chunker = LangChainChunker(max_chunk_size=max_chunk_size)
         self.chunks : List[Dict] = []
-
+        print("Kan-loadiw Embedding Model (all-MiniLM-L6-v2)...")
+        self.embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
+        self.embeddings = None
 
     def ingest_directory(self,raw_data_path: str):
         print(f"read data in this path : {raw_data_path}")
@@ -48,16 +53,9 @@ class CodebaseIndexer:
             tokenized_docs.append(token)
         
         print("index BM 25 ....")
-        # for i in  tokenized_docs:
-        #     print(i)
-        #     exit(1)
         self.bm25 = BM25Okapi(tokenized_docs)
-        # test
-        # test_query = "how to configure openai server"
-        # tokenized_query = test_query.lower().split()
-        # scores = self.bm25.get_scores(tokenized_query)
-        # print(f"\n--- N9aț (Scores) dyl sou2al: '{test_query}' ---")
-        # print(scores[:10]) 
+
+    
     def save_index(self, save_dir: str = "data/processed"):
         print("save index ....")
         Path(save_dir).mkdir(parents=True, exist_ok=True)
@@ -71,6 +69,18 @@ class CodebaseIndexer:
         bm25_path = Path(save_dir)
         with open(f"{bm25_path}/bm25_index.pkl", "wb") as f:
             pickle.dump(self.bm25, f)
+        embeddings_path = Path(save_dir)
+        with open(f"{embeddings_path}/embeddings.pkl", "wb") as f:
+            pickle.dump(self.embeddings,f)
+        print("save index vector")
+
+    def build_vector_index(self):
+        print(" Vectors (Embeddings)...")
+        for chunk in self.chunks:
+            texts = chunk['text']
+        self.embeddings =self.embedding_model.encode(texts, show_progress_bar=True)
+        print("vector index wajed!")
+
         
 
 

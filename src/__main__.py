@@ -20,7 +20,9 @@ class RAGCLI:
         indexer = CodebaseIndexer(max_chunk_size=max_chunk_size)
         indexer.ingest_directory(raw_path)
         indexer.token_and_build_bm25()
+        indexer.build_vector_index()
         indexer.save_index()
+
         print("Ingestion complete! Indices saved under data/processed/")
 
     def search(self, query: str, k: int = 5):
