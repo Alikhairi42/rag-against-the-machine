@@ -1,95 +1,91 @@
-from typing import List
-from langchain_text_splitters import  RecursiveCharacterTextSplitter, Language
+"""Chunking utilities for splitting text by format."""
+
+from typing import Any, Dict, List
+
+from langchain_text_splitters import (
+    Language,
+    RecursiveCharacterTextSplitter,
+)
+
 
 class LangChainChunker:
-    def __init__(self, max_chunk_size :int = 2000):
-        self.max_chunk_size = max_chunk_size
-    
+    """Splits text into chunks using LangChain splitters."""
 
-    def chunk_markdown(self, text: str, file_path: str)-> List[dict]:
-        
+    def __init__(self, max_chunk_size: int = 2000) -> None:
+        """Initialise the chunker.
+
+        Args:
+            max_chunk_size: Maximum characters per chunk.
+        """
+        self.max_chunk_size = max_chunk_size
+
+    def chunk_markdown(
+        self, text: str, file_path: str
+    ) -> List[Dict[str, Any]]:
+        """Split markdown text into indexed chunks.
+
+        Args:
+            text: Raw markdown content.
+            file_path: Source file path stored in each chunk.
+
+        Returns:
+            List of chunk dictionaries with position info.
+        """
         splitter = RecursiveCharacterTextSplitter(
-            chunk_size = self.max_chunk_size,
+            chunk_size=self.max_chunk_size,
             chunk_overlap=0,
             add_start_index=True,
-            separators=["\n\n","\n"," ",""]
+            separators=["\n\n", "\n", " ", ""],
         )
 
         docs = splitter.create_documents([text])
-        chunks_info = []
+        chunks_info: List[Dict[str, Any]] = []
         for doc in docs:
-            chunk_text = doc.page_content 
-            start_index = doc.metadata['start_index']
+            chunk_text = doc.page_content
+            start_index: int = doc.metadata["start_index"]
             end_index = start_index + len(chunk_text)
 
-
             chunks_info.append({
-                "file_path" : file_path,
+                "file_path": file_path,
                 "first_character_index": start_index,
                 "last_character_index": end_index,
-                "text": chunk_text
+                "text": chunk_text,
             })
         return chunks_info
-    
-    def chunk_python(self, code :str ,file_path: str) -> List[dict]:
-        splitter = RecursiveCharacterTextSplitter.from_language(
-            language = Language.PYTHON,
-            chunk_size = self.max_chunk_size,
-            chunk_overlap=0,
-            add_start_index = True,
-            # separators = ['\nclass ', '\ndef ', '\n\tdef']
+
+    def chunk_python(
+        self, code: str, file_path: str
+    ) -> List[Dict[str, Any]]:
+        """Split Python source code into indexed chunks.
+
+        Args:
+            code: Raw Python source code.
+            file_path: Source file path stored in each chunk.
+
+        Returns:
+            List of chunk dictionaries with position info.
+        """
+        splitter = (
+            RecursiveCharacterTextSplitter.from_language(
+                language=Language.PYTHON,
+                chunk_size=self.max_chunk_size,
+                chunk_overlap=0,
+                add_start_index=True,
+            )
         )
 
         docs = splitter.create_documents([code])
 
-        chunks_info = []
+        chunks_info: List[Dict[str, Any]] = []
         for doc in docs:
             chunk_text = doc.page_content
-            start_index = doc.metadata['start_index']
+            start_index: int = doc.metadata["start_index"]
             end_index = start_index + len(chunk_text)
 
             chunks_info.append({
-                "file_path" : file_path,
+                "file_path": file_path,
                 "first_character_index": start_index,
                 "last_character_index": end_index,
-                "text": chunk_text
+                "text": chunk_text,
             })
         return chunks_info
-
-
-
-# if __name__ == "__main__":
-
-#     test_chunker = LangChainChunker(max_chunk_size=50)
-
-#     print("--- TEST MARKDOWN CHUNKING ---")
-
-#     md_text = "Title 1\n\nThis is the first paragraph.\n\nThis is the second paragraph which is slightly longer."
-#     py_text = "def hello():\n    print('Hello World')\n\nclass MyClass:\n    def __init__(self):\n        pass"
-#     md_chunks = test_chunker.chunk_markdown(md_text,"docs/test.md")
-#     py_chunks = test_chunker.chunk_python(py_text, "docs/test.md")
-
-#     for i, chunk in enumerate(md_chunks):
-#         start = chunk['first_character_index']
-#         end = chunk['last_character_index']
-#         c_text = chunk['text']
-
-#         is_correct = (md_text[start:end] == c_text) 
-        
-#         print(f"Chunk {i+1}:")
-#         print(f"  Start: {start} | End: {end}")
-#         print(f"  Valid Index? {is_correct}")
-#         print(f"  Text: {repr(c_text)}\n")
-
-#     print("--- TEST PYTHON CHUNKING ---")
-#     for i, chunk in enumerate(py_chunks):
-#         start = chunk['first_character_index']
-#         end = chunk['last_character_index']
-#         c_text = chunk['text']
-
-#         is_correct = (md_text[start:end] == c_text) 
-        
-#         print(f"Chunk {i+1}:")
-#         print(f"  Start: {start} | End: {end}")
-#         print(f"  Valid Index? {is_correct}")
-#         print(f"  Text: {repr(c_text)}\n")
