@@ -1,5 +1,5 @@
 
-*This project has been created as part of the 42 curriculum by <a-khairi>.*
+*This project has been created as part of the 42 curriculum by a-khairi.*
 
 # RAG Against The Machine 🎸🤖
 
